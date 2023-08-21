@@ -1,12 +1,21 @@
-import {View, Text, StyleSheet} from "react-native";
+import {View, Text, StyleSheet, Pressable} from "react-native";
 
-const MainScreen = (props) => {
+const MainScreen = ({navigation}) => {
+
+    pressHandler = () => {
+        navigation.navigate("Star")
+    }
 
     return (
     <View style={styles.screenContainer}>
         <Text style={styles.text}>
             My Main Screen
         </Text>
+        <Pressable onPress={pressHandler}>
+            <Text>
+                Go to star page
+            </Text>
+        </Pressable>
     </View>
     )
 } 
