@@ -13,7 +13,7 @@ export default function App() {
       <StatusBar style="dark" />
       <NavigationContainer>
         <Stack.Navigator>
-          <Stack.Screen name="Main" component={MainScreen}/>
+          <Stack.Screen name="Stellar Navigator" component={MainScreen}/>
           <Stack.Screen name="Star" component={SystemView}/>
         </Stack.Navigator>
       </NavigationContainer>
