@@ -1,11 +1,13 @@
-import { View, Text, StyleSheet, Pressable, Image } from "react-native";
+import { View, Text, StyleSheet, Button, Modal } from "react-native";
 import { getSix } from "../data/fetchStars";
 import { useEffect, useState } from "react";
 import StarTile from "../components/StarTile";
+import SearchForm from "../components/SearchForm";
 
 const MainScreen = ({ navigation }) => {
 
     const [stars, setStars] = useState([]);
+    const [searchModalVisible, setSearchModalVisible] = useState((false));
 
     useEffect(() => {
         getSix()
@@ -16,7 +18,7 @@ const MainScreen = ({ navigation }) => {
             })
     }, [])
 
-    pressHandler = (starData, imgSource) => {
+    const pressHandler = (starData, imgSource) => {
         navigation.navigate(
             "Star", 
             {
@@ -25,8 +27,20 @@ const MainScreen = ({ navigation }) => {
             })
     }
 
+    const searchPress = () => {
+        setSearchModalVisible(true);
+        return null;
+    }
+
     return (
         <View style={styles.screenContainer}>
+            <Modal visible={searchModalVisible}>
+                <SearchForm 
+                    hide={()=>{setSearchModalVisible(false)}}
+                    setStars={setStars}
+                    back={()=>navigation.navigate("Stellar Navigator")}
+                    />
+            </Modal>
             <Text style={styles.text}>
                 Located Stars:
             </Text>
@@ -54,7 +68,7 @@ const MainScreen = ({ navigation }) => {
                     )
                 })}
             </View>
-
+            <Button onPress={searchPress} title="Search for More"/>
         </View>
     )
 }
